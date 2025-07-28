@@ -1,2 +1,29 @@
-spring.application.name: employee-api
-server.port: 8111
+spring:
+  application:
+    name: employee-api
+  cloud:
+    openfeign:
+      retry:
+         enabled: true    # turn Feign's native retryer ON
+      client:
+        config:
+          default:
+            connectTimeout: 5000
+            readTimeout:    5000
+            retryableStatusCodes: 429
+            retry:
+              maxAttempts: 4
+              period:      2000
+              maxPeriod:   200000
+              multiplier:  100
+
+
+server:
+  port: 8111
+
+
+# Logging configuration
+logging:
+  level:
+    com.reliaquest.api: DEBUG
+    feign: DEBUG
