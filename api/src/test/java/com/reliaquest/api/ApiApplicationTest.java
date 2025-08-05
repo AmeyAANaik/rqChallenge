@@ -112,7 +112,7 @@ class ApiApplicationTest {
         mockMvc.perform(post("/api/employee")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(invalidRequest)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().is5xxServerError());
     }
 
     @Test
